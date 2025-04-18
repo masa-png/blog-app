@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { posts } from "../data/posts";
 
 export default function Home() {
@@ -9,7 +10,11 @@ export default function Home() {
           {posts.map((post) => {
             return (
               <li key={post.id} className="flex flex-col list-none m-0 p-0">
-                <a href="#" className="block bg-white">
+                <Link
+                  to={`posts/${post.id}`}
+                  href="#"
+                  className="block bg-white"
+                >
                   <div className="border border-gray-300 mb-8 py-4 pl-4 pr-8">
                     <div>
                       <div className="flex justify-between">
@@ -38,7 +43,7 @@ export default function Home() {
                       ></div>
                     </div>
                   </div>
-                </a>
+                </Link>
               </li>
             );
           })}

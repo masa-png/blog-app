@@ -1,13 +1,15 @@
+import { Link } from "react-router-dom";
+
 export default function Header() {
   return (
     <>
       <header className="bg-[#333] text-white font-bold p-6 flex justify-between items-center shadow-lg">
-        <a className="text-base" href="/">
+        <Link to="/" className="text-base">
           Blog
-        </a>
-        <a href="/contact" className="text-base">
+        </Link>
+        <Link to="/contact" className="text-base">
           お問い合わせ
-        </a>
+        </Link>
       </header>
     </>
   );
