@@ -5,6 +5,8 @@ export default function Detail() {
   const { id } = useParams();
   const post = posts.find((post) => post.id === parseInt(id));
 
+  if (!post) return null;
+
   return (
     <div>
       <div className="max-w-3xl mt-16 mx-auto">
