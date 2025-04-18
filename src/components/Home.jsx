@@ -17,10 +17,10 @@ export default function Home() {
                           {new Date(post.createdAt).toLocaleDateString()}
                         </div>
                         <div className="flex flex-wrap">
-                          {post.categories.map((category) => {
+                          {post.categories.map((category, index) => {
                             return (
                               <div
-                                key={category}
+                                key={index}
                                 className="px-1.5 py-1 mr-2 text-xs text-blue-600 border border-blue-600 rounded"
                               >
                                 {category}
