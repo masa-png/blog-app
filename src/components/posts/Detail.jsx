@@ -5,7 +5,7 @@ export default function Detail() {
   const { id } = useParams();
   const post = posts.find((post) => post.id === parseInt(id));
 
-  if (!post) return null;
+  if (!post) return <p>投稿がみつかりませんでした</p>;
 
   return (
     <div>
