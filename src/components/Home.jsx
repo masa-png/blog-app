@@ -22,7 +22,7 @@ export default function Home() {
 
   if (loading) return <p>読み込み中...</p>;
 
-  if (!loading && !posts) return <p>投稿がみつかりませんでした</p>;
+  if (!loading && posts.length === 0) return <p>投稿がみつかりませんでした</p>;
 
   return (
     <div>
