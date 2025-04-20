@@ -49,39 +49,38 @@ export default function Form() {
 
     const isValid = validateForm();
 
+    if (!isValid) return;
+
     // バリデーションに成功した場合 - APIでフォームを送信
-    if (isValid) {
-      try {
-        setIsSubmitting(true);
+    try {
+      setIsSubmitting(true);
 
-        const response = await fetch(
-          "https://1hmfpsvto6.execute-api.ap-northeast-1.amazonaws.com/dev/contacts",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(formData),
-          }
-        );
-
-        if (response.ok) {
-          alert("送信しました");
-          setFormData({ name: "", email: "", message: "" });
-          setErrors({});
-        } else {
-          // エラーレスポンスの処理
-          const errorData = await response.json().catch(() => null);
-          const errorMessage =
-            errorData?.message || `エラー: ${response.status}`;
-          alert(`送信に失敗しました。${errorMessage}`);
+      const response = await fetch(
+        "https://1hmfpsvto6.execute-api.ap-northeast-1.amazonaws.com/dev/contacts",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
         }
-      } catch (error) {
-        console.error("送信エラー:", error);
-        alert("送信に失敗しました。もう一度お試しください。");
-      } finally {
-        setIsSubmitting(false);
+      );
+
+      if (response.ok) {
+        alert("送信しました");
+        setFormData({ name: "", email: "", message: "" });
+        setErrors({});
+      } else {
+        // エラーレスポンスの処理
+        const errorData = await response.json().catch(() => null);
+        const errorMessage = errorData?.message || `エラー: ${response.status}`;
+        alert(`送信に失敗しました。${errorMessage}`);
       }
+    } catch (error) {
+      console.error("送信エラー:", error);
+      alert("送信に失敗しました。もう一度お試しください。");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
